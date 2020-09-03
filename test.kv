@@ -1,0 +1,242 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import SwapTransition kivy.uix.screenmanager.SwapTransition
+#: import NoTransition kivy.uix.screenmanager.NoTransition
+MyScreenManager:
+    transition: NoTransition()
+    FirstScreen:
+    SecondScreen:
+    ThirdScreen:
+
+<FirstScreen>:
+    name: 'first'
+
+    ScrollView:
+        do_scroll_y: True
+        do_scroll_x: False
+
+        GridLayout:
+            cols: 1
+            size_hint_y: None
+            size_hint_x: 1
+            height: self.minimum_height
+            row_force_default: True
+            row_default_height: 160
+
+            GridLayout:
+                cols: 2
+                size_hint_y: None
+                size_hint_x: 1
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 160
+
+                Label:
+                    id: foodName
+                    text: 'food name'
+                    font_size: root.font
+                TextInput:
+                    id: foodNameInput
+                    text: ' '
+                    font_size: root.font
+
+            GridLayout:
+                cols: 2
+                size_hint_y: None
+                size_hint_x: 1
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 160
+
+                Label:
+                    text: 'Fat'
+                    font_size: root.font
+            
+                TextInput:
+                    id: fatInput
+                    font_size: root.font
+                    text: ' '
+
+            GridLayout:
+                cols: 2
+                size_hint_y: None
+                size_hint_x: 1
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 160
+            
+                Label:
+                    text: 'Protein'
+                    font_size: root.font
+            
+                TextInput:
+                    id: proteinInput
+                    font_size: root.font
+                    text: ' '
+
+            GridLayout:
+                cols: 2
+                size_hint_y: None
+                size_hint_x: 1
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 160
+
+                Label:
+                    text: 'Carbs'
+                    font_size: root.font
+            
+                TextInput:
+                    id: carbInput
+                    font_size: root.font
+                    text: ' '
+
+            GridLayout:
+                cols: 2
+                size_hint_y: None
+                size_hint_x: 1
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 160
+
+                Label:
+                    text: 'Salt'
+                    font_size: root.font
+                TextInput:
+                    id: saltInput
+                    font_size: root.font
+                    text: ' '
+
+            GridLayout:
+                cols: 2
+                size_hint_y: None
+                size_hint_x: 1
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 160
+
+                Label:
+                    text: 'gramms'
+                    font_size: root.font
+                TextInput:
+                    id: weightInput
+                    font_size: root.font
+                    text: '100'
+
+            GridLayout:
+                cols: 2
+                size_hint_y: None
+                size_hint_x: 1
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 160
+
+                Label:
+                    text: 'food calories'
+                    font_size: root.font
+
+                TextInput:
+                    id: tabledFoodCalories
+                    font_size: root.font
+                    text: ' '
+
+            RelativeLayout:
+                Button:
+                    size: 600, 150
+                    size_hint: None, None
+                    pos_hint: {'center_x' : 0.5, 'center_y': 0.5}
+                    id: addCalories
+                    text: 'Add'
+                    font_size: 35
+                    on_release: root.addCaloriesByButtonPress()
+    
+
+            RelativeLayout:
+                Button:
+                    size: 600, 150
+                    size_hint: None, None
+                    pos_hint: {'center_x' : 0.5, 'center_y': 0.5}
+                    id: removeCalories
+                    text: 'Remove'
+                    font_size: 35
+                    on_release: root.removeCaloriesByButtonPress()
+
+            RelativeLayout:
+                Button:
+                    size: 600, 150
+                    size_hint: None, None
+                    pos_hint: {'center_x' : 0.5, 'center_y': 0.5}
+                    id: saveButton
+                    text: 'Save'
+                    font_size: root.font
+                    on_release: root.appendFoodToDatabase()
+
+            RelativeLayout:
+                Button:
+                    size: 600, 150
+                    size_hint: None, None
+                    pos_hint: {'center_x' : 0.5, 'center_y': 0.5}
+                    id: foodFile
+                    text: 'to food database'
+                    font_size: root.font
+                    on_release: root.manager.current = 'second'
+
+            RelativeLayout:
+                Button:
+                    size: 600, 150
+                    size_hint: None, None
+                    pos_hint: {'center_x' : 0.5, 'center_y': 0.5}
+                    text: 'reset daily cals'
+                    font_size: root.font
+                    on_release: root.resetCalorieSum()
+
+            RelativeLayout:
+                Button:
+                    size: 600, 150
+                    size_hint: None, None
+                    pos_hint: {'center_x' : 0.5, 'center_y': 0.5}
+                    text: 'calorie log'
+                    font_size: root.font
+                    on_release: root.manager.current = 'third'
+
+            RelativeLayout:
+                Label:
+                    size: 600, 150
+                    size_hint: None, None
+                    pos_hint: {'center_x' : 0.5, 'center_y': 0.5}
+                    id: calorieSum
+                    font_size: 55
+                    text: 'add your daily calories: '
+
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                size_hint_x: 1
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 250
+
+
+
+                RelativeLayout:
+                    Label:
+                        size: 600, 200
+                        size_hint: None, None
+                        pos_hint: {'center_x' : 0.5, 'center_y': 0.09}
+                        id: percentNutrients
+                        font_size: 55
+                        text: 'percent nutrients'
+
+
+<SecondScreen>:
+    name: 'second'
+
+
+<ThirdScreen>:
+    name: 'third'
+
+
+
+
+
+
